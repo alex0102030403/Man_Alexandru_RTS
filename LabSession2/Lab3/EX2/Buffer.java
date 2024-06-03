@@ -3,26 +3,26 @@ package LabSession2.Lab3.EX2;
 import java.util.ArrayList;
 
 public class Buffer {
-    ArrayList<Double> content = new ArrayList<Double>();
+	ArrayList<Double> content = new ArrayList<Double>();
 
-    synchronized void put(double d) {
-        content.add(new Double(d));
-        notify();
-    }
+	synchronized void put(double d) {
+		content.add(new Double(d));
+		notify();
+	}
 
-    synchronized double get() {
-        double d = -1;
+	synchronized double get() {
+		double d = -1;
 
-        try {
-            if (content.size() == 0) {
-                wait();
-            }
-            d = (content.get(0)).doubleValue();
-            content.remove(0);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+		try {
+			if (content.size() == 0) {
+				wait();
+			}
+			d = (content.get(0)).doubleValue();
+			content.remove(0);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
-        return d;
-    }
+		return d;
+	}
 }
